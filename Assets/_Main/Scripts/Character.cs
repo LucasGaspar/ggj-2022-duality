@@ -11,7 +11,6 @@ public class Character : MonoBehaviour
     private const string GroundLayerName = "Ground";
     private const float RaycastGroundedLength = 0.10f;
     private const float RaycastCeilingLength = 0.10f;
-    private const float RaycastOffsetFromBorder = 0.1f;
 
     private new Rigidbody2D rigidbody2D = null;
     private new Collider2D collider2D = null;
@@ -80,12 +79,12 @@ public class Character : MonoBehaviour
         else
         {
             //Test hit on lowest right
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider2D.bounds.max.x - RaycastOffsetFromBorder, collider2D.bounds.min.y), Vector2.down, RaycastGroundedLength, groundLayer);
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider2D.bounds.max.x, collider2D.bounds.min.y), Vector2.down, RaycastGroundedLength, groundLayer);
             grounded = (hit.collider != null);
             if (!grounded)
             {
                 //Test hit on lowest left
-                hit = Physics2D.Raycast(new Vector2(collider2D.bounds.min.x + RaycastOffsetFromBorder, collider2D.bounds.min.y), Vector2.down, RaycastGroundedLength, groundLayer);
+                hit = Physics2D.Raycast(new Vector2(collider2D.bounds.min.x, collider2D.bounds.min.y), Vector2.down, RaycastGroundedLength, groundLayer);
                 grounded = (hit.collider != null);
             }
         }
@@ -97,11 +96,11 @@ public class Character : MonoBehaviour
             return;
 
         //Test hit on upper right
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider2D.bounds.max.x - RaycastOffsetFromBorder, collider2D.bounds.max.y), Vector2.up, RaycastCeilingLength, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(collider2D.bounds.max.x, collider2D.bounds.max.y), Vector2.up, RaycastCeilingLength, groundLayer);
         if (hit.collider == null)
         {
             //Test hit on upper left
-            hit = Physics2D.Raycast(new Vector2(collider2D.bounds.min.x + RaycastOffsetFromBorder, collider2D.bounds.max.y), Vector2.up, RaycastCeilingLength, groundLayer);
+            hit = Physics2D.Raycast(new Vector2(collider2D.bounds.min.x, collider2D.bounds.max.y), Vector2.up, RaycastCeilingLength, groundLayer);
             if (hit.collider == null)
                 return;
         }
