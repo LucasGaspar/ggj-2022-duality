@@ -59,16 +59,4 @@ public class Character : MonoBehaviour
 
         rigidbody2D.velocity = newVelocity;
     }
-
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-            MoveLeft();
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-            MoveRight();
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-            Stop();
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-            Jump();
-    }*/
 }
